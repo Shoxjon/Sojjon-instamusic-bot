@@ -69,7 +69,20 @@ def main():
         MessageHandler(filters.TEXT & ~filters.COMMAND, download_video)
     )
 
-    app.run_polling()
+  import threading
+from flask import Flask
+
+web_app = Flask(__name__)
+
+@web_app.route("/")
+def home():
+    return "Bot ishlayapti!"
+
+def run_web():
+    web_app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+
+threading.Thread(target=run_web, daemon=True).start()  
+app.run_polling()
 
 if __name__ == "__main__":
     main()
