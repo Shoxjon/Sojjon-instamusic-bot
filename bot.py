@@ -69,9 +69,6 @@ def main():
         MessageHandler(filters.TEXT & ~filters.COMMAND, download_video)
     )
 
-  import threading
-from flask import Flask
-
 app.run_polling()
 
 if __name__ == "__main__":
